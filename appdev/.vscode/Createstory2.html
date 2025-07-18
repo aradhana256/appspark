@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name name="veiwport" content="width=device-width, initial-scale=1.0"/>
+    <title>Story Creator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            backround: #c4c4e3;
+            margin:0;
+            padding: 20px;
+        }
+
+        h1 {
+           text-align: center;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            backround:#aeaeff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(229, 188, 237, 0.1)
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #96bdf2;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: rgb(193, 193, 53);
+            color: rgb(2, 32, 17);
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background-color: beige;
+        }
+
+        .story {
+            border-bottom: 1px soild #b2b4ec;
+            padding: 10px 0;
+        }
+
+        .story h3 {
+            margin: 0 0 5px;
+        }
+
+        .story p{
+            margin: 0;
+        }
+
+        .delete-btn {
+            color:rgb(170, 10, 34);
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Story Creator</h1>
+    <input type="text" id="storyTitle" placeholder="Story Title" />
+    <textarea id="storyContent" placeholder="Write your story..." rows="5"></textarea> 
+    <button onclick="addStory()">Add Story</button>
+
+    <hr />
+    <div id="storiesContainer"></div>
+</div>
+
+<script>
+    // Load storis on page load
+    window.onload = function() {
+        loadStories();
+    };
+
+    function addStory() {
+        const title = document.getElementById('storyTitle').value.trim();
+        const content = document.getElementById('storyContent').value.trim();
+
+     if (!title || !content) {
+        alert("Please enter both title and story content.");
+        return;
+     }
+
+     const story = {
+        id: Date.now(),
+        title,
+        content
+     };
+     
+     let stories = JSON.parse(localStorage.getItem("stories")) || [];
+     stories.push(story);
+     localStorage.setItem("stories", JSON.stringify(stories));
+
+     document.getElementById("storyTitle").value = "";
+     document.getElementById("storyContent").value = "";
+     loadStories();
+    }
+
+    function loadStories() {
+        const container = document.getElementById("storiesContainer");
+        container.innerHTML = "";
+        const stories = JSON.parse(localStorage.getItem("stories")) || [];
+
+        if (stories.length === 0) {
+            container.innerHTML = "<p>No stories yet. Add one above!</p>";
+            return;
+        }
+
+        stories.reverse().forEach(story => {
+            const div = document.createElement("div");
+            div.className = "story";
+            div.innerHTML = `
+            <h3>${story.title}</h3>
+            <p>${story.content}</p>
+            <span class="delete-btn" onclick="deleteStory(${story.id})">Delete</span>
+        `;
+        container.appendChild(div);
+        });
+    }
+
+    function deleteStory(id) {
+        let stories = JSON.parse(localStorage.getItem("stories")) || []
+        stories = stories.filter(story => story.id !== id);
+        localStorage.setItem("stories", JSON.stringify)(stories);
+        loadStories();
+    }
+</script>
+
+</body>
+</html>

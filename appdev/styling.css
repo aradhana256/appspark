@@ -1,0 +1,48 @@
+body {
+    backround: #d2baee
+    font-family: 'Segeo UI', Arial, sans-serif
+}
+
+.profile-card{
+    backround: #caa9f1
+    border-radius: 16px;
+    box-shadow: 0 4px 24px #ccaaf3
+    padding: 30px 36px;
+    width: 340px
+    margin: 40px auto;
+    text-align: center;
+}
+
+.animal-pic{
+    width: 180px;
+    border-radius: 12px;
+    border: 3px solid #e599e3
+    margin-bottom: 18px;
+}
+
+h1 {
+    color: #517cc3
+    margin-bottom: 12px;
+}
+
+h2{
+    color: #9b89af
+    margin-bottom: 10px
+}
+
+ul{
+    text-align: left;
+    margin: 0 0 20px 0:
+    padding-left: 22px;
+}
+
+a{
+    color:#e599e3
+    text-decoration: none;
+    padding-left: bold;
+}
+
+a:hover{
+    color:#9b89af
+    text-decoration: underline;
+}

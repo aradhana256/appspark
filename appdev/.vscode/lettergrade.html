@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Letter Grade Checker</title>
+</head>
+<body>
+        <h1>Letter Grade Checker</h1>
+        <p>Enter a score to check the letter grade.</p>
+<input type="number" id="scoreid" placeholder="Enter the score here" />
+<button onclick="checkEligibility()">Check Grade</button>
+<div id="output"></div>
+
+<script type="text/javascript">
+
+    function checkEligibility(){
+        const scoreinput = document.getElementById('scoreid').value.trim()
+        const score = parseInt(scoreinput);
+
+        let grade;
+        if (!isNaN(score)){
+            if(score >= 92){
+                grade = "A";
+            } else if (score >= 82) {
+                grade = "B"
+            } else if (score >= 72) {
+                grade = "C";
+            } else if (score >= 62) {
+                grade = "D";
+            }else{
+                grade = "F";
+            }
+            result = `score: ${score} <br> Letter grade : <strong> ${grade}</strong>`;
+        }
+        else {
+            result = "Please enter a valid score.";
+        }
+      document.getElementById("output").innerHTML= result
+    }
+    
+    </script>
+</body>
+</html>

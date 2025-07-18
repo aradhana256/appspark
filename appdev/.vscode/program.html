@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Check Voter Eligibility</title>
+    </head>
+    <body>
+        <h1>Check Voter Eligibility</h1>
+        <p>Enter an age and click the button to check eligibility.</p>
+<input type="number" id="age" placeholder="Enter your age here" />
+<button onclick="checkEligibility"()">Check</button>"
+<div id="output"></div>
+
+<script type="text/JaavaScript">
+
+    function checkEligibility(){
+        const ageInput = document.getElementById('age').value().trim()
+        const age parseInt(ageInput);
+        let result;
+        if(!isNaN(age)){
+            if(age>=18){
+                result = "Eligible to vote"
+            }else{
+                result = "Not eligible to vote"
+            }
+        }else{
+            result = "Enter correct Number"
+        }
+
+        document.getElementById("output").innerHTML= res
+    }
+
+</script>
